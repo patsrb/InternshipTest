@@ -1,18 +1,10 @@
 package institution.interlink;
 
-import person.Student;
+import models.DataModel;
 
-public class Internship {
-    public Internship(String name) {
-        //TODO: Implementation is needed
-    }
-
-    public void setStudent(Student student) {
-        //TODO: Implementation is needed
-    }
-
-    public String getStudents() {
-        //TODO: Implementation is needed
-        return "Andrew Maslenko\nJulia Veselkina\n";
-    }
+public class Internship extends DataModel
+{
+	public Internship(String name){
+		super(name);
+	}
 }
