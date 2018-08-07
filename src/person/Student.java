@@ -9,15 +9,20 @@ public class Student {
 	public String Internship;
 	public Knowledge Knowledge;
 	
-    public Student(String name, int age, String university, Knowledge knowledge) {
+    public Student(String name, int age, String university, Knowledge knowledge, String internship) {
         Name = name;
         Age = age;
         University = university;
         Knowledge = knowledge;
+        Internship = internship;
+    }
+    
+    public Student(String name, int age, String university, String internship) {
+        this(name, age, university, new Knowledge(), internship);
     }
     
     public Student(String name, int age, String university) {
-        this(name, age, university, new Knowledge());
+        this(name, age, university, new Knowledge(), null);
     }
     
     public String getName() {
@@ -31,10 +36,9 @@ public class Student {
     public int getKnowledge() {
     	return Knowledge.Level;
     }
-    /*
+    
     @Override
     public String toString() {
-        return "[name=" + Name + ", age=" + Age +", university=" + University + ", internship=" + Internship + "]";
+        return "[Name: " + Name + ", Age: " + Age +", Knowledge: " + Knowledge.Level + "]";
     }
-    */
 }

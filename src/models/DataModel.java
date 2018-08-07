@@ -41,7 +41,7 @@ public abstract class DataModel {
     public List<String> getStudents() { 
     	List<String> tmp = new ArrayList<String>();
     	for (Student student : list) {
-    		tmp.add(student.Name);
+    		tmp.add(student.toString());
     	}
     	return tmp;
     }
