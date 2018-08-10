@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 public class json {
 	private static String ProgramFolder = System.getProperty("user.dir");
 	
-	public static Object Deserialize(String filename, Type type) throws IOException {
+	public static Object deserialize(String filename, Type type) throws IOException {
 		try (BufferedReader br = new BufferedReader(new FileReader(ProgramFolder + "\\" + filename))) {
 			return new Gson().fromJson(br, type);
 		} catch (FileNotFoundException e) {
@@ -24,7 +24,7 @@ public class json {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void Serialize(Object json, String filename, Type type) throws IOException {
+	public static void serialize(Object json, String filename, Type type) throws IOException {
 		try (Writer writer = new FileWriter(ProgramFolder + "\\" + filename)) {
 			new GsonBuilder().create().toJson((List<Object>) json, type, writer);
 		}

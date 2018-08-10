@@ -22,7 +22,7 @@ public abstract class DataModel {
 		return false;
 	}
 
-	public void setStudent(Student student) {
+	public void addStudent(Student student) {
 		if (!containsStudent(student)) {
 			list.add(student);
 		} else {
@@ -30,10 +30,12 @@ public abstract class DataModel {
 		}
 	}
 
+	/*
 	public void addStudent(Student student) {
 		list.add(student);
 	}
-
+	*/
+	
 	public void remStudent(Student student) {
 		list.remove(student);
 	}
@@ -45,5 +47,14 @@ public abstract class DataModel {
 			tmp.add(student.toString());
 		}
 		return tmp;
+	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + this.Name + ", List: " + this.getStudents();
+	}
+	
+	public void print() {
+		System.out.println(this.toString());
 	}
 }

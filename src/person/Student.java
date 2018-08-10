@@ -19,11 +19,11 @@ public class Student {
 	}
 
 	public Student(String name, int age, String university, String internship) {
-		this(name, age, university, new Knowledge(util.Random(1, 10)), internship);
+		this(name, age, university, new Knowledge(util.random(1, 10)), internship);
 	}
 
 	public Student(String name, int age, String university) {
-		this(name, age, university, new Knowledge(util.Random(1, 10)), null);
+		this(name, age, university, new Knowledge(util.random(1, 10)), null);
 	}
 
 	public String getName() {
@@ -41,5 +41,9 @@ public class Student {
 	@Override
 	public String toString() {
 		return "[Name: " + Name + ", Age: " + Age + ", Knowledge: " + Knowledge.Level + "]";
+	}
+	
+	public void print() {
+		System.out.println(this.toString());
 	}
 }

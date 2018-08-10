@@ -21,15 +21,17 @@ public class Application {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException {
-		students = (List<Student>) json.Deserialize("students.json", StudObjType);
+		// Deserialize students data from file
+		//students = (List<Student>) json.deserialize("students.json", StudObjType);
+		students = null;
 
 		if (students == null) {
 			students = new ArrayList<Student>();
-			students.add(new Student("Andrew Kostenko", util.Random(18, 25), "CH.U.I.", "Interlink"));
-			students.add(new Student("Julia Veselkina", util.Random(18, 25), "CH.U.I.", "DLink"));
-			students.add(new Student("Maria Perechrest", util.Random(18, 25), "CH.U.I."));
-			students.add(new Student("Jacob Jacobson", util.Random(18, 25), "CH.U.I."));
-			students.add(new Student("David Davidson", util.Random(18, 25), "CH.U.I."));
+			students.add(new Student("Andrew Kostenko", util.random(18, 25), "CH.U.I.")); //, "Interlink"
+			students.add(new Student("Julia Veselkina", util.random(18, 25), "CH.U.I.")); //, "DLink"
+			students.add(new Student("Maria Perechrest", util.random(18, 25), "CH.U.I."));
+			students.add(new Student("Jacob Jacobson", util.random(18, 25), "CH.U.I."));
+			students.add(new Student("David Davidson", util.random(18, 25), "CH.U.I."));
 		}
 
 		int sum = 0;
@@ -61,31 +63,29 @@ public class Application {
 			}
 		}
 
-		int average = util.Average(sum, students.size());
+		int average = util.average(sum, students.size());
 		if (internships != null) {
 			for (Student student : students) {
 				if (student.Internship == null && student.Knowledge.Level > average) {
-					int rand = util.Random(0, internships.size() - 1);
+					int rand = util.random(0, internships.size() - 1);
 					student.Internship = internships.get(rand).Name;
 					internships.get(rand).addStudent(student);
 				}
 			}
 		}
 
-		System.out.println("Students: " + students.size() + "\nAverage knowledge: " + average + "\nUniversities: "
-				+ universities.size() + "\nInternships: " + internships.size());
+		// Print out data specifics
+		System.out.println("Students: " + students.size() 
+				+ "\nAverage knowledge: " + average 
+				+ "\nUniversities: " + (universities != null ? universities.size() : 0) 
+				+ "\nInternships: " + (internships != null ? internships.size() : 0));
 
-		for (University university : universities) {
-			System.out.println("University: " + university.Name + ", Students: " + university.getStudents());
-		}
-
-		if (internships != null) {
-			for (Internship internship : internships) {
-				System.out.println("Internship: " + internship.Name + ", Students: " + internship.getStudents());
-			}
-		}
-
-		json.Serialize(students, "students.json", StudObjType);
+		// Print out Universities/Internships and their respective students		
+		if (universities != null) universities.forEach((university) -> university.print());
+		if (internships != null) internships.forEach((internship) -> internship.print());
+		
+		// Serialize resulting data to file
+		json.serialize(students, "students.json", StudObjType);
 		return;
 	}
 
