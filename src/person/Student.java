@@ -1,6 +1,7 @@
 package person;
 
 import person.consciousness.Knowledge;
+import utilities.util;
 
 public class Student {
 	public String Name;
@@ -18,11 +19,11 @@ public class Student {
 	}
 
 	public Student(String name, int age, String university, String internship) {
-		this(name, age, university, new Knowledge(), internship);
+		this(name, age, university, new Knowledge(util.Random(1, 10)), internship);
 	}
 
 	public Student(String name, int age, String university) {
-		this(name, age, university, new Knowledge(), null);
+		this(name, age, university, new Knowledge(util.Random(1, 10)), null);
 	}
 
 	public String getName() {
