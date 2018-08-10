@@ -6,26 +6,24 @@ import person.Student;
 import reader.json;
 import utilities.util;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.reflect.TypeToken;
 
 public class Application {
 	public static List<University> universities;
 	public static List<Internship> internships;
 	public static List<Student> students;
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException {
 		// Deserialize students data from file
-		students = (List<Student>) json.deserialize("students.json");
-		//students = null;
+		//students = (List<Student>) json.deserializeList("students.json");
+		students = null;
 
 		if (students == null) {
 			students = new ArrayList<Student>();
-			students.add(new Student("Andrew Kostenko", util.random(18, 25), "CH.U.I.")); //, "Interlink"
-			students.add(new Student("Julia Veselkina", util.random(18, 25), "CH.U.I.")); //, "DLink"
+			students.add(new Student("Andrew Kostenko", util.random(18, 25), "CH.U.I.", "Interlink")); //
+			students.add(new Student("Julia Veselkina", util.random(18, 25), "CH.U.I.", "DLink")); //
 			students.add(new Student("Maria Perechrest", util.random(18, 25), "CH.U.I."));
 			students.add(new Student("Jacob Jacobson", util.random(18, 25), "CH.U.I."));
 			students.add(new Student("David Davidson", util.random(18, 25), "CH.U.I."));
@@ -82,7 +80,7 @@ public class Application {
 		if (internships != null) internships.forEach((internship) -> internship.print());
 		
 		// Serialize resulting data to file
-		json.serialize(students, "students.json");
+		json.serializeList(students, "students.json");
 		return;
 	}
 

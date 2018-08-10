@@ -19,11 +19,7 @@ public class json {
 	private static String ProgramFolder = System.getProperty("user.dir");
 	
 	public static Object deserializeList(String filename) throws IOException {
-		try (BufferedReader br = new BufferedReader(new FileReader(ProgramFolder + "\\" + filename))) {
-			return new Gson().fromJson(br, new TypeToken<List<Student>>() {}.getType());
-		} catch (FileNotFoundException e) {
-			return null;
-		}
+		return deserializeList(filename, new TypeToken<List<Student>>() {}.getType());
 	}
 	
 	public static Object deserializeList(String filename, Type type) throws IOException {
@@ -34,11 +30,8 @@ public class json {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static void serializeList(Object json, String filename) throws IOException {
-		try (Writer writer = new FileWriter(ProgramFolder + "\\" + filename)) {
-			new GsonBuilder().create().toJson((List<Object>) json, new TypeToken<List<Student>>() {}.getType(), writer);
-		}
+		serializeList(json, filename, new TypeToken<List<Student>>() {}.getType());
 	}
 
 	@SuppressWarnings("unchecked")
