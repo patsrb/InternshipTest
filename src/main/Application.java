@@ -16,14 +16,11 @@ public class Application {
 	public static List<University> universities;
 	public static List<Internship> internships;
 	public static List<Student> students;
-
-	public static Type StudObjType = new TypeToken<List<Student>>() {}.getType();
-
-	@SuppressWarnings("unchecked")
+	
 	public static void main(String[] args) throws IOException {
 		// Deserialize students data from file
-		//students = (List<Student>) json.deserialize("students.json", StudObjType);
-		students = null;
+		students = (List<Student>) json.deserialize("students.json");
+		//students = null;
 
 		if (students == null) {
 			students = new ArrayList<Student>();
@@ -85,10 +82,11 @@ public class Application {
 		if (internships != null) internships.forEach((internship) -> internship.print());
 		
 		// Serialize resulting data to file
-		json.serialize(students, "students.json", StudObjType);
+		json.serialize(students, "students.json");
 		return;
 	}
 
+	// todo: rem duplicate code
 	private static void AddToInternshipObject(Student stud) {
 		if (internships == null) {
 			internships = new ArrayList<Internship>();
@@ -101,6 +99,7 @@ public class Application {
 		}
 	}
 
+	// todo: rem duplicate/unnecessary code
 	private static boolean CheckUniversity(String str) {
 		if (universities == null) {
 			universities = new ArrayList<University>();
@@ -114,6 +113,7 @@ public class Application {
 		return false;
 	}
 
+	// todo: rem duplicate/unnecessary code
 	private static boolean CheckInternship(String str) {
 		if (internships == null) {
 			internships = new ArrayList<Internship>();
